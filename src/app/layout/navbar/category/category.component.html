@@ -1,1 +1,18 @@
-<p>category works!</p>
+<div class="categories pt-3 mx-8">
+  @for (category of categories; track category.technicalName){
+    @if (category.technicalName !="ALL"){
+      <div class="flex flex-colom align-items-center pb-3 category"
+      [class.category-activates]="category.activated"
+      >
+        <fa-icon class="mb-1" [icon]="category.icon"></fa-icon>
+      </div>
+      <div title=" {{category.displayName}}"
+      class="name"
+      >
+        {{category.displayName}}
+
+      </div>
+    }
+  }
+</div>
+
