@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "leaflet-geosearch"
+            ],
+            "polyfills": ["src/polyfills.ts"],
             "outputPath": "dist/airbnb-clone-front",
             "index": "src/index.html",
             "browser": "src/main.ts",

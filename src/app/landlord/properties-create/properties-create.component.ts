@@ -14,6 +14,7 @@ import {CategoryStepComponent} from "../propertiesCreate/step/category-step/cate
 import {NewListingPicture} from "../model/picture.model";
 import {FooterComponent} from "../../layout/footer/footer.component";
 import {FooterStepComponent} from "../../shared/footer-step/footer-step.component";
+import {LocationStepComponent} from "../propertiesCreate/step/location-step/location-step.component";
 @Component({
   selector: 'app-properties-create',
   standalone: true,
@@ -21,7 +22,8 @@ import {FooterStepComponent} from "../../shared/footer-step/footer-step.componen
     CategoryComponent,
     CategoryStepComponent,
     FooterComponent,
-    FooterStepComponent
+    FooterStepComponent,
+    LocationStepComponent
   ],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
@@ -138,7 +140,6 @@ export class PropertiesCreateComponent implements OnDestroy {
     });
   }
 
-
   private onCreateOk(createdListingState: State<CreatedListing, HttpErrorResponse>) {
     this.loardingCreation = false;
     this.toastService.send({
@@ -158,8 +159,6 @@ export class PropertiesCreateComponent implements OnDestroy {
         detail: "Could not create your listing. Try again"
       }
     )
-
-
   }
 
   nextStep(): void {
@@ -186,6 +185,10 @@ export class PropertiesCreateComponent implements OnDestroy {
     this.currentStep.isValid = valid;
   }
 
+  onLocationChange(location: string) {
+    this.newListing.location=location;
+
+  }
 }
 
 

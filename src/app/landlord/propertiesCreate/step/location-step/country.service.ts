@@ -2,7 +2,6 @@ import {computed, inject, Injectable, Signal, signal, WritableSignal} from '@ang
 import {Countries, Country} from "./contry.model";
 import {State} from "../../../../core/model/state.model";
 import {catchError, map, Observable, of, pipe, shareReplay, tap} from "rxjs";
-import * as console from "node:console";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -36,7 +35,7 @@ export class CountryService {
 
 
 
-  getCountryByCode(code: string): Observable<Country> {
+  public getCountryByCode(code: string): Observable<Country> {
     return this.fetchCountries$.pipe(
       map(countries =>  countries.filter(country=> country.cca3===code)),
       map(countries => countries[0])
