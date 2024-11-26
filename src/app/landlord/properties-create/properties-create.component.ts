@@ -4,26 +4,37 @@ import {LandlordListingService} from "../landlord-listing.service";
 import {ToastService} from "../../layout/toast.service";
 import {AuthService} from "../../core/auth/auth.service";
 import {Step} from "./step.model";
-import {CreatedListing, NewListing} from "../model/listing-model";
+import {CreatedListing, Description, NewListing, NewListingInfo} from "../model/listing-model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {State} from "../../core/model/state.model";
 import {Router} from "@angular/router";
 import {CategoryName} from "../../layout/navbar/category/category.model";
 import {CategoryComponent} from "../../layout/navbar/category/category.component";
-import {CategoryStepComponent} from "../propertiesCreate/step/category-step/category-step.component";
 import {NewListingPicture} from "../model/picture.model";
 import {FooterComponent} from "../../layout/footer/footer.component";
 import {FooterStepComponent} from "../../shared/footer-step/footer-step.component";
-import {LocationStepComponent} from "../propertiesCreate/step/location-step/location-step.component";
+import {CategoryStepComponent} from "./step/category-step/category-step.component";
+import {LocationStepComponent} from "./step/location-step/location-step.component";
+import {InfoStepControlComponent} from "./step/info-step-control/info-step-control.component";
+import {InfoStepComponent} from "./step/info-step/info-step.component";
+import {PictureStepComponent} from "./step/picture-step/picture-step.component";
+import {DescriptionStepComponent} from "./step/description-step/description-step.component";
+import {PriceStepComponent} from "./step/price-step/price-step.component";
+import {PriceVO} from "../model/listing-vo.model";
+
 @Component({
   selector: 'app-properties-create',
   standalone: true,
   imports: [
     CategoryComponent,
-    CategoryStepComponent,
     FooterComponent,
     FooterStepComponent,
-    LocationStepComponent
+    CategoryStepComponent,
+    LocationStepComponent,
+    InfoStepComponent,
+    PictureStepComponent,
+    DescriptionStepComponent,
+    PriceStepComponent
   ],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
@@ -86,7 +97,6 @@ export class PropertiesCreateComponent implements OnDestroy {
 
   currentStep = this.steps[0];
 
-
   newListing: NewListing = {
     category: "AMAZING_VIEWS",
     infos: {
@@ -113,7 +123,7 @@ export class PropertiesCreateComponent implements OnDestroy {
   listenFetchUser(): void {
     effect(() => {
       if (this.userService.fetchUser().status == "OK" && this.listingService.createdSig().status === "OK") {
-        this.router.navigate(["lanlord", "properties"]);
+        this.router.navigate(["landlord", "properties"]);
 
       }
 
@@ -174,8 +184,10 @@ export class PropertiesCreateComponent implements OnDestroy {
   }
 
   isAllStepValid(): boolean {
-    return this.steps.filter(step=> step.isValid).length===this.steps.length
+    return this.steps.filter(step=> step.isValid).length === this.steps.length
   }
+
+
 
   onCategoryChange(newcategory:CategoryName): void {
     this.newListing.category=newcategory;
@@ -188,6 +200,23 @@ export class PropertiesCreateComponent implements OnDestroy {
   onLocationChange(location: string) {
     this.newListing.location=location;
 
+  }
+
+  onInfoChange(newInfo: NewListingInfo) {
+    this.newListing.infos=newInfo;
+  }
+
+
+  onPucturesChange(pictures : NewListingPicture[]) {
+     this.newListing.pictures=pictures;
+  }
+
+  onDescriptionChange(newDescription: Description) {
+this.newListing.description=newDescription;
+  }
+
+  onPriceChange(newPrice: PriceVO) {
+this.newListing.price=newPrice;
   }
 }
 

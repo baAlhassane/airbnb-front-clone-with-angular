@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@types/leaflet": "^1.9.14",
     "@angular/animations": "^18.2.12",
     "@angular/common": "^18.2.12",
     "@angular/compiler": "^18.2.12",
@@ -18,13 +19,16 @@
     "@angular/platform-browser": "^18.2.12",
     "@angular/platform-browser-dynamic": "^18.2.12",
     "@angular/router": "^18.2.12",
-    "@fortawesome/angular-fontawesome": "^0.14.1",
+    "@asymmetrik/ngx-leaflet": "^18.0.1",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "auth0": "^4.10.0",
     "i": "^0.3.7",
+    "leaflet": "^1.9.4",
+    "leaflet-geosearch": "^4.0.0",
     "primeflex": "^3.3.1",
     "primeng": "^17.18.10",
     "rxjs": "~7.8.0",
@@ -32,6 +36,7 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+
     "@angular-devkit/build-angular": "^18.2.12",
     "@angular/cli": "^18.2.12",
     "@angular/compiler-cli": "^18.2.12",
@@ -43,5 +48,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
+
   }
 }

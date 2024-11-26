@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationStepComponent } from './location-step.component';
+import { PriceStepComponent } from './price-step.component';
 
-describe('LocationStepComponent', () => {
-  let component: LocationStepComponent;
-  let fixture: ComponentFixture<LocationStepComponent>;
+describe('PriceStepComponent', () => {
+  let component: PriceStepComponent;
+  let fixture: ComponentFixture<PriceStepComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocationStepComponent]
+      imports: [PriceStepComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(LocationStepComponent);
+
+    fixture = TestBed.createComponent(PriceStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

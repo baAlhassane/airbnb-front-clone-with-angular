@@ -1,4 +1,5 @@
 export interface NewListingPicture {
   file: File,
-  url:string
+  urlDisplay:string
+  base64?: string;
 }

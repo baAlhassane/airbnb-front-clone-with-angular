@@ -10,7 +10,7 @@ export interface NewListingInfo {
 }
 
 
-interface Description {
+export interface Description {
   title: TitleVO,
   description: DescriptionVO,
 }

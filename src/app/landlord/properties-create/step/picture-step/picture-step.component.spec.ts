@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationMapComponent } from './location-map.component';
+import { PictureStepComponent } from './picture-step.component';
 
-describe('LocationMapComponent', () => {
-  let component: LocationMapComponent;
-  let fixture: ComponentFixture<LocationMapComponent>;
+describe('PictureStepComponent', () => {
+  let component: PictureStepComponent;
+  let fixture: ComponentFixture<PictureStepComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocationMapComponent]
+      imports: [PictureStepComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(LocationMapComponent);
+
+    fixture = TestBed.createComponent(PictureStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

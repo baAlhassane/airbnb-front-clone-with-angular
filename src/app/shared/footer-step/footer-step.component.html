@@ -1,7 +1,6 @@
+<p> footer-step-component works !</p>
+
 <div class="placeholder">
-
-
-
 <div class="controls flex justify-content-between py-3 border-top-1 px-4">
   @if (currentStep().idPrevious!=null){
     <button class="p-button p-button-link" (click)="onPrevious()" >Back</button>
@@ -11,7 +10,7 @@
 
     </div>
   }
-  @if (currentStep().idNext !=null){
+  @if (currentStep().idNext !== null){
     <button
       [disabled]="!currentStep().isValid"
       [class.p-disabled]="!currentStep().isValid"
@@ -21,7 +20,8 @@
     <div>
 <button class="p-button flex align-items-center"
         id="create-listing"
-(click)="onFinish()" [disabled]="isAllStepValid() || loading()">
+(click)="onFinish()" [disabled]="!isAllStepValid() || loading()"
+[class.p-disabled]="!isAllStepValid() || loading()">
   <div  class="btn-create">{{labelFinishedBtn()}} </div>
   @if (loading()){
     <fa-icon class="mal-2" icon="circle-notch" animation="spin"></fa-icon>
