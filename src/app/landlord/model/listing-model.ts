@@ -19,7 +19,7 @@ export interface NewListing {
   category:CategoryName,
   location:string,
   infos:NewListingInfo,
-  pictures: Array<NewListingPicture>
+  pictures: Array<NewListingPicture>;
   description: Description,
   price: PriceVO
 
@@ -28,6 +28,23 @@ export interface NewListing {
 export  interface CreatedListing {
   publicId:string
 }
+
+export interface DisplayPicture {
+  file?: string;
+  fileContenType: string;
+  isCover?: boolean;
+}
+
+export interface CardListing {
+  price: PriceVO;
+  location: string;
+  cover: DisplayPicture;
+  bookingCategory: CategoryName;
+  publicId: string;
+  loading: boolean;
+}
+
+
 
 
 

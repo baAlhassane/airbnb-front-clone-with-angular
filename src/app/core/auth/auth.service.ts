@@ -38,8 +38,7 @@ export class AuthService {
     fetchHttpUser(forceResync:boolean):Observable<User>{
         const params : HttpParams =new HttpParams().set('forceResync', forceResync.toString());
       // return this.http.get<User>(`${environment.API_URL}/api/auth/get-authenticated-user`,{params})
-      return this.http.get<User>(`${environment.API_URL}/auth/get-authenticated-user`,{params})
-
+      return this.http.get<User>(`${environment.API_URL}/auth/get-authenticated-user`,{params});
   }
 
   login():void{

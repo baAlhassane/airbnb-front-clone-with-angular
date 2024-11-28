@@ -1,8 +1,8 @@
 import {computed, inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {State} from "../core/model/state.model";
-import {CreatedListing, NewListing} from "./model/listing-model";
+import {CardListing, CreatedListing, NewListing} from "./model/listing-model";
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {NewListingPicture} from "./model/picture.model";
 import {convertFileToBase64} from "./properties-create/convertFileToByte";
 
@@ -19,6 +19,12 @@ http:HttpClient=inject(HttpClient);
   private created$: WritableSignal<State<CreatedListing>> = signal(State.Builder<CreatedListing>().forInit());
   createdSig: Signal<any>=computed(() => this.created$());
 
+
+  private getAll$: WritableSignal<State<Array<CardListing>>> = signal(State.Builder<Array<CardListing>>().forInit());
+  getAllSig = computed(() => this.created$());
+
+  private delete$: WritableSignal<State<string>> = signal(State.Builder<string>().forInit());
+  deleteSig = computed(() => this.created$());
 
   create(newListing: NewListing):void {
     const formData : FormData= new FormData();
@@ -64,10 +70,30 @@ http:HttpClient=inject(HttpClient);
 
 
 
+  getAll():void {
+    this.http.get<Array<CardListing>>(`${environment.API_URL}/landlord-listing/get-all`)
+    .subscribe({
+      next: (listings: Array<CardListing>) => this.getAll$.set(State.Builder<Array<CardListing>>().forSuccess(listings)),
+      error: (error:any)=> this.created$.set(State.Builder<CreatedListing>().forError(error))
 
 
+    })
+  }
 
 
+  delete(publicId:string):void {
+    const params = new HttpParams().set("publiicId", publicId);
+    this.http.delete<string>(`${environment.API_URL}/landlord-listing/delete`, {params: params})
+      .subscribe({
+        next: publicId => this.delete$.set(State.Builder<string>().forSuccess(publicId)),
+        error: err => this.created$.set(State.Builder<CreatedListing>().forError(err)),
+      })
+  }
+
+
+  resetListingCreation():void {
+    this.created$.set(State.Builder<CreatedListing>().forInit());
+  }
 
 
 
@@ -114,8 +140,5 @@ http:HttpClient=inject(HttpClient);
 
 
 
-  resetListingCreation():void {
-    this.created$.set(State.Builder<CreatedListing>().forInit());
-  }
 
 }
